@@ -2,7 +2,6 @@ var Joi = require('joi');
 var Produce = require('../../models/produce').Produce;
 
 exports.register = function(plugin, options, next) {
-    var Hapi = plugin.hapi;
 
     exports.index(plugin);
     exports.show(plugin);
@@ -26,7 +25,15 @@ exports.index = function(plugin) {
     });
 };
 
+/**
+ * GET /togo/{id}
+ * Gets the produce by {id}
+ *
+ * @param plugin
+ */
 exports.show = function(plugin) {
+    var Hapi = plugin.hapi;
+
     plugin.route({
         method: 'GET',
         path: '/togo/{id}',
@@ -35,9 +42,9 @@ exports.show = function(plugin) {
                 if (!err && item) {
                     reply(item);
                 } else if (err) {
-                    reply(Hapi.boom.notFound());
+                    reply(Hapi.boom.notFound("No produce found."));
                 } else {
-                    reply(Hapi.boom.notFound());
+                    reply(Hapi.boom.notFound("No produce found."));
                 }
             });
         }
@@ -66,7 +73,6 @@ exports.create = function(plugin) {
         }
     });
 };
-
 
 exports.register.attributes = {
     pkg: require('./package.json')

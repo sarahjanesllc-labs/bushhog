@@ -3,25 +3,7 @@ var Mongoose = require('mongoose');
 
 Mongoose.connect('mongodb://localhost/rfmproducetogo');
 
-var server = new Hapi.Server(8080, "localhost", {
-    views: {
-        engines: {
-            'hbs': require('handlebars')
-        },
-        path: "./views"
-    }
-});
-
-var rootHandler = function(request, reply) {
-    reply.view('index.hbs');
-};
-
-// initialize index route, just a place holder
-server.route({
-    path: "/",
-    method: "GET",
-    handler: rootHandler
-});
+var server = new Hapi.Server(8080, "localhost");
 
 server.pack.register([{
     plugin: require("lout")

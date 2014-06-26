@@ -70,6 +70,9 @@ exports.create = function(plugin) {
                 }
 
             });
+        },
+        config: {
+            auth: 'session'
         }
     });
 };

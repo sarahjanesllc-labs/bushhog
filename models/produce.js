@@ -1,8 +1,7 @@
 // produce model
 var Mongoose = require('mongoose');
-var Schema = Mongoose.Schema;
 
-var produceSchema = new Schema({
+var produceSchema = new Mongoose.Schema({
     category: {
         type: String,
         required: true,

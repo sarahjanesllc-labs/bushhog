@@ -6,18 +6,17 @@ Mongoose.connect('mongodb://localhost/rfmproducetogo');
 var server = new Hapi.Server(8080, "localhost", {
     views: {
         engines: {
-            jade: require("jade")
+            'hbs': require('handlebars')
         },
         path: "./views"
     }
 });
 
 var rootHandler = function(request, reply) {
-    reply({
-        message: "hai2u"
-    });
+    reply.view('index.hbs');
 };
 
+// initialize index route, just a place holder
 server.route({
     path: "/",
     method: "GET",

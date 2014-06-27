@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "author": "Sarah Janes, LLC <sarahjanesllc@gmail.com>",
   "license": "BSD-2-Clause",

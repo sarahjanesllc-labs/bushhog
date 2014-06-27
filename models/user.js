@@ -25,6 +25,9 @@ var userSchema = new Mongoose.Schema({
     },
     paypal_refresh_token: {
         type: String
+    },
+    is_admin: {
+        type: Boolean
     }
 });
 

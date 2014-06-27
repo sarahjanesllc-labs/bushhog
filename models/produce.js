@@ -26,7 +26,10 @@ var produceSchema = new Mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
-    }
+    },
+    images: [{
+        type: String, trime: true
+    }]
 });
 
 var produce = Mongoose.model('produce', produceSchema);

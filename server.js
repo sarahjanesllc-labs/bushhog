@@ -10,17 +10,11 @@ server.pack.register([{
 }, {
     plugin: require('hapi-auth-cookie')
 }, {
-    plugin: require("./plugins/togo")
-}, {
     plugin: require("./plugins/auth")
+}, {
+    plugin: require("./plugins/togo")
 }], function(err) {
     if (err) throw err;
-    server.auth.strategy('session', 'cookie', {
-        password: 'shhasecret',
-        cookie: 'wtfisthisfor',
-        isSecure: false,
-        redirectTo: false
-    });
     server.start(function() {
         console.log("hapi server started @ " + server.info.uri);
     });

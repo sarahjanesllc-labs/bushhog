@@ -2,7 +2,6 @@ var Joi = require('joi');
 var Produce = require('../../models/produce').Produce;
 
 exports.register = function(plugin, options, next) {
-
     exports.index(plugin);
     exports.show(plugin);
     exports.create(plugin);

@@ -12,7 +12,7 @@ gulp.task('styles', function() {
 });
 
 var vendorCSS = [
-    "bower_components/bootswatch/cosmo/bootstrap.min.css",
+    "bower_components/bootswatch/spacelab/bootstrap.min.css",
 ];
 
 var vendorScripts = [

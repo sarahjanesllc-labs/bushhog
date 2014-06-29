@@ -1,7 +1,12 @@
 var Joi = require('joi');
+var path = require('path');
 var Produce = require('../../models/produce').Produce;
 
 exports.register = function(plugin, options, next) {
+    plugin.views({
+        engines: { hbs: require('handlebars')},
+        path: path.resolve(__dirname, 'templates')
+    });
     exports.index(plugin);
     exports.show(plugin);
     exports.create(plugin);
@@ -15,7 +20,7 @@ exports.index = function(plugin) {
         handler: function(request, reply) {
             Produce.find({}, function(err, items) {
                 if (!err) {
-                    reply(items);
+                    reply.view('all-items', items);
                 } else {
                     reply(err);
                 }

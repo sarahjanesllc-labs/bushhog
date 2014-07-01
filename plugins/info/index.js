@@ -9,7 +9,8 @@ exports.register = function(plugin, options, next) {
     });
     exports.index(plugin);
     exports.about(plugin);
-    exports.directions(plugin);
+    exports.location(plugin);
+    exports.contact(plugin);
 
     next();
 };
@@ -27,7 +28,8 @@ exports.index = function(plugin) {
                         return false;
                     }
                 }),
-                title: 'Rolesville Farmers Market'
+                title: 'Rolesville Farmers Market',
+                pageHeading: 'Welcome'
             };
             reply.view('splashpage', items);
         }
@@ -35,21 +37,40 @@ exports.index = function(plugin) {
 };
 
 exports.about = function(plugin) {
+    var items = {
+        pageHeading: 'About'
+    };
     plugin.route({
         method: 'GET',
         path: '/about',
         handler: function(request, reply) {
-            reply.view('about');
+            reply.view('about', items);
         }
     });
 };
 
-exports.directions = function(plugin) {
+exports.contact = function(plugin) {
+    var items = {
+        pageHeading: 'Contact'
+    };
     plugin.route({
         method: 'GET',
-        path: '/directions',
+        path: '/contact',
         handler: function(request, reply) {
-            reply.view('directions');
+            reply.view('contact', items);
+        }
+    });
+};
+
+exports.location = function(plugin) {
+    var items = {
+        pageHeading: '<span class="glyphicon glyphicon-map-marker"></span> Location'
+    };
+    plugin.route({
+        method: 'GET',
+        path: '/location',
+        handler: function(request, reply) {
+            reply.view('location', items);
         }
     });
 };

@@ -11,9 +11,13 @@
 
 <body>
     {{>nav-main}}
-<div class="container">
+    {{#if pageHeading}}
     <header>
-
+        <div class="container">
+            <h1>{{{pageHeading}}}</h1>
+        </div>
     </header>
-  </div>
+    {{/if}}
+
+
     <div id="page">

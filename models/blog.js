@@ -1,24 +1,22 @@
-// produce model
+// blog model
 var Mongoose = require('mongoose');
 
-var produceSchema = new Mongoose.Schema({
-    category: {
+var blogSchema = new Mongoose.Schema({
+    title: {
         type: String,
         required: true,
         trim: true
     },
-    label: {
+    md: {
         type: String,
         required: true,
-        trim: true
     },
-    uom: {
+    html: {
         type: String,
         required: true,
-        trim: true
-    }, // unit of measure
-    price: {
-        type: Number,
+    },
+    author: {
+        type: String,
         required: true,
         trim: true
     },
@@ -32,8 +30,8 @@ var produceSchema = new Mongoose.Schema({
     }]
 });
 
-var produce = Mongoose.model('produce', produceSchema);
+var blog = Mongoose.model('blog', blogSchema);
 
 module.exports = {
-    Produce: produce
+    Blog: blog
 };

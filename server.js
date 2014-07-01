@@ -9,7 +9,9 @@ var server = new Hapi.Server(8080, "localhost", config.server);
 server.route({
     path: '/favicon.ico',
     method: 'GET',
-    handler: { file: './favicon.ico' }
+    handler: {
+        file: './favicon.ico'
+    }
 });
 
 server.route({
@@ -32,6 +34,8 @@ server.pack.register([{
     plugin: require("./plugins/auth")
 }, {
     plugin: require("./plugins/togo")
+}, {
+    plugin: require("./plugins/info")
 }], function(err) {
     if (err) throw err;
     server.start(function() {

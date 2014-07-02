@@ -15,12 +15,16 @@ exports.register = function(plugin, options, next) {
 };
 
 exports.index = function(plugin) {
+    var items = {
+        pageHeading: 'Shop online, pick up at our drive-thru line!',
+    };
     plugin.route({
         method: 'GET',
         path: '/togo',
         handler: function(request, reply) {
-            Produce.find({}, function(err, items) {
+            Produce.find({}, function(err, res) {
                 if (!err) {
+                    items.produce = res;
                     reply.view('all-items', items);
                 } else {
                     reply(err);

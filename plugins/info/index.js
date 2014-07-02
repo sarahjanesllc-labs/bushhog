@@ -10,7 +10,6 @@ exports.register = function(plugin, options, next) {
     exports.index(plugin);
     exports.about(plugin);
     exports.location(plugin);
-    exports.contact(plugin);
 
     next();
 };
@@ -49,18 +48,6 @@ exports.about = function(plugin) {
     });
 };
 
-exports.contact = function(plugin) {
-    var items = {
-        pageHeading: 'Contact'
-    };
-    plugin.route({
-        method: 'GET',
-        path: '/contact',
-        handler: function(request, reply) {
-            reply.view('contact', items);
-        }
-    });
-};
 
 exports.location = function(plugin) {
     var items = {

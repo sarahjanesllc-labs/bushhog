@@ -1,6 +1,28 @@
 {{>header}}
 
 <div class="container">
-All items
+    {{#each produce}}
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    {{#if image}}
+                        <div class="col-md-12">
+                            <img src="/static/img/rolesville_togo_button.png" class="img-responsive">
+                        </div>
+                    {{/if}}
+                    <div class="col-md-8">
+                        <h4>{{label}}</h4>
+                        ${{price}}/{{uom}}
+                    </div>
+                    <div class="col-md-4">
+                        quantity
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {{/each}}
+
 </div>
 {{>footer}}

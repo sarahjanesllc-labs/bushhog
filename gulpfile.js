@@ -12,6 +12,7 @@ gulp.task('styles', function() {
 });
 
 var vendorCSS = [
+    "bower_components/fontawesome/css/font-awesome.min.css",
     "bower_components/bootswatch/flatly/bootstrap.min.css",
 ];
 

@@ -10,6 +10,7 @@ exports.register = function(plugin, options, next) {
     exports.index(plugin);
     exports.show(plugin);
     exports.create(plugin);
+    exports.how(plugin);
     next();
 };
 
@@ -25,6 +26,19 @@ exports.index = function(plugin) {
                     reply(err);
                 }
             });
+        }
+    });
+};
+
+exports.how = function(plugin) {
+    var items = {
+        pageHeading: 'How this Works'
+    };
+    plugin.route({
+        method: 'GET',
+        path: '/togo/how-this-works',
+        handler: function(request, reply) {
+            reply.view('how-this-works', items);
         }
     });
 };

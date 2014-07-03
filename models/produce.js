@@ -22,6 +22,10 @@ var produceSchema = new Mongoose.Schema({
         required: true,
         trim: true
     },
+    onHand: { // Inventory
+        type: Number,
+        required: true
+    },
     created: {
         type: Date,
         required: true,

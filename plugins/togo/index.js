@@ -16,7 +16,7 @@ exports.register = function(plugin, options, next) {
 
 exports.index = function(plugin) {
     var items = {
-        pageHeading: 'Shop online, pick up at our drive-thru line!',
+        pageHeading: 'Shop online, pick up at our drive-thru!',
     };
     plugin.route({
         method: 'GET',

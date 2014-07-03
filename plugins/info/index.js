@@ -4,7 +4,9 @@ var Blog = require('../../models/blog').Blog;
 
 exports.register = function(plugin, options, next) {
     plugin.views({
-        engines: { hbs: require('handlebars')},
+        engines: {
+            hbs: require('handlebars')
+        },
         path: path.resolve(__dirname, 'templates')
     });
     exports.index(plugin);
@@ -15,22 +17,22 @@ exports.register = function(plugin, options, next) {
 };
 
 exports.index = function(plugin) {
+    var items = {
+        title: 'Rolesville Farmers Market',
+        pageHeading: 'Welcome'
+    };
     plugin.route({
         method: 'GET',
         path: '/',
         handler: function(request, reply) {
-            var items = {
-                posts: Blog.find({}, function(err, items) {
-                    if (!err) {
-                        return items;
-                    } else {
-                        return false;
-                    }
-                }),
-                title: 'Rolesville Farmers Market',
-                pageHeading: 'Welcome'
-            };
-            reply.view('splashpage', items);
+            Blog.find({}, function(err, res) {
+                items.posts = res;
+                if (!err) {
+                    reply.view('splashpage', items);
+                } else {
+                    reply(err);
+                }
+            });
         }
     });
 };

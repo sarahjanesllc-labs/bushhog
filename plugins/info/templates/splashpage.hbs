@@ -10,8 +10,17 @@
             </p>
         </div>
 
-        <div class="col-md-9">
-            something here
+        <div class="col-md-8 col-md-offset-1">
+            <h3>What's the latest?</h3>
+            <hr>
+            {{#each posts}}
+              <div class="post-title">
+                  <h5>{{title}} <small>{{created}}</small></h5>
+              </div>
+              <div class="post-body">
+                  {{{html}}}
+              </div>
+            {{/each}}
         </div>
     </div>
 </div>

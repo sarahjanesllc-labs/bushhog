@@ -33,6 +33,8 @@ server.pack.register([{
 }, {
     plugin: require("./plugins/auth")
 }, {
+    plugin: require('./plugins/admin')
+}, {
     plugin: require("./plugins/togo")
 }, {
     plugin: require("./plugins/info")

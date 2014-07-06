@@ -1,14 +1,21 @@
 var Joi = require('joi');
 var config = require('../../config.js');
 var User = require('../../models/user').User;
+var path = require('path');
 
 exports.register = function(plugin, options, next) {
+    plugin.views({
+        engines: {
+            hbs: require('handlebars')
+        },
+        path: path.resolve(__dirname, 'templates')
+    });
     plugin.dependency('hapi-auth-cookie');
     plugin.auth.strategy('session', 'cookie', {
         password: config.session.password,
         cookie: config.session.cookie,
         isSecure: false,
-        redirectTo: false
+        redirectTo: '/auth/login'
     });
 
     // Expose register route if a user doesn't exist
@@ -45,33 +52,39 @@ exports.create = function(plugin) {
 };
 
 exports.login = function(plugin) {
+    var items = {
+        pageHeading: 'Login',
+        message: ''
+    };
     plugin.route({
-        method: 'POST',
+        method: ['GET', 'POST'],
         path: '/auth/login',
         handler: function(request, reply) {
-            if (!request.auth.isAuthenticated) {
+            if (request.auth.isAuthenticated) {
+                return reply.redirect('/admin');
+            }
+
+            if (request.method === 'post') {
                 if (!request.payload.username || !request.payload.password) {
-                    reply({
-                        message: "Needs username/password."
+                    items.message = "Needs username/password.";
+                } else {
+                    User.findOne({
+                        'username': request.payload.username
+                    }, function(err, user) {
+                        if (err) {
+                            reply(err);
+                        }
+                        if (user && request.payload.password === user.password) {
+                            request.auth.session.set(user);
+                            reply.redirect('/admin');
+                        } else {
+                            items.message = "Invalid login.";
+                        }
                     });
                 }
-                User.findOne({
-                    'username': request.payload.username
-                }, function(err, user) {
-                    if (err) {
-                        reply(err);
-                    }
-                    if (user && request.payload.password === user.password) {
-                        request.auth.session.set(user);
-                        reply({
-                            message: "success."
-                        });
-                    } else {
-                        reply({
-                            message: "Invalid login."
-                        });
-                    }
-                });
+            }
+            if (request.method === 'get' || items.message) {
+                return reply.view('login', items);
             }
         }
     });
@@ -83,9 +96,7 @@ exports.logout = function(plugin) {
         path: '/auth/logout',
         handler: function(request, reply) {
             request.auth.session.clear();
-            reply({
-                message: "Logged out."
-            });
+            return reply.redirect('/');
         },
         config: {
             auth: 'session'

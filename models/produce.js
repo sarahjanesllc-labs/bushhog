@@ -12,20 +12,23 @@ var produceSchema = new Mongoose.Schema({
         required: true,
         trim: true
     },
-    uom: {
-        type: String,
-        required: true,
-        trim: true
-    }, // unit of measure
-    price: {
-        type: Number,
-        required: true,
-        trim: true
-    },
-    onHand: { // Inventory
-        type: Number,
-        required: true
-    },
+    uom: [{
+        unit: { // each, pound, bushel
+            type: String,
+            required: true,
+            trim: true
+        },
+        price: {
+            type: Number,
+            required: true,
+            trim: true
+        },
+        onHand: { // Inventory
+            type: Number,
+            required: true
+        }
+    }], // unit of measure
+
     created: {
         type: Date,
         required: true,

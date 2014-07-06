@@ -12,6 +12,7 @@ exports.register = function(plugin, options, next) {
         path: path.resolve(__dirname, 'templates')
     });
     exports.index(plugin);
+    exports.products(plugin);
     next();
 };
 
@@ -23,7 +24,32 @@ exports.index = function(plugin) {
         method: 'GET',
         path: '/admin',
         handler: function(request, reply) {
-            reply.view('index', items);
+            return reply.view('index', items);
+        },
+        config: {
+            auth: 'session'
+        }
+    });
+};
+
+exports.products = function(plugin) {
+    var items = {
+        pageHeading : 'Admin - Products'
+    };
+    plugin.route({
+        method: 'GET',
+        path: '/admin/products/{id?}',
+        handler: function(request, reply) {
+            if (request.params.id) {
+                Produce.findById(request.params.id, function(err, data) {
+                    items.productDetail = data;
+                });
+            }
+            Produce.find({}, function(err, data) {
+                items.products = data;
+            });
+
+            return reply.view('products', items);
         },
         config: {
             auth: 'session'

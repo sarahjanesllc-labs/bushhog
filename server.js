@@ -1,6 +1,7 @@
 var Hapi = require('hapi');
-var config = require('./config.js');
+var config = require('./config');
 var Mongoose = require('mongoose');
+var routes = require('./routes');
 
 Mongoose.connect('mongodb://localhost/rfmproducetogo');
 
@@ -26,21 +27,8 @@ server.route({
     }
 });
 
-server.pack.register([{
-    plugin: require("lout")
-}, {
-    plugin: require('hapi-auth-cookie')
-}, {
-    plugin: require("./plugins/auth")
-}, {
-    plugin: require('./plugins/admin')
-}, {
-    plugin: require("./plugins/togo")
-}, {
-    plugin: require("./plugins/info")
-}], function(err) {
-    if (err) throw err;
-    server.start(function() {
-        console.log("hapi server started @ " + server.info.uri);
-    });
+server.start(function() {
+    console.log("hapi server started @ " + server.info.uri);
 });
+
+server.route(routes);

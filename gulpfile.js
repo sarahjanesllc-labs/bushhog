@@ -6,7 +6,7 @@ var gulp = require('gulp'),
 
 gulp.task('styles', function() {
     gulp.src('style/**')
-        .pipe(stylus())
+        .pipe(stylus({compress: true}))
         .pipe(gulp.dest('static/css/'));
 });
 

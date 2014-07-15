@@ -1,5 +1,5 @@
 var Hapi = require('hapi');
-var config = require('config.js');
+var config = require('./config.js');
 var Mongoose = require('mongoose');
 
 Mongoose.connect('mongodb://localhost/rfmproducetogo');

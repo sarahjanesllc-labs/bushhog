@@ -8,7 +8,6 @@ exports.register = function(plugin, options, next) {
     });
     exports.index(plugin);
     exports.show(plugin);
-    exports.create(plugin);
     exports.how(plugin);
     next();
 };

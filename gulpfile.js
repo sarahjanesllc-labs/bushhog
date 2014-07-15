@@ -1,24 +1,22 @@
 var gulp = require('gulp'),
-    nib = require('nib'),
-    less = require('gulp-less'),
+    stylus = require('gulp-stylus'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
     nodemon = require('gulp-nodemon');
 
 gulp.task('styles', function() {
-    gulp.src('less/index.less')
-        .pipe(less({compress: true}))
+    gulp.src('style/**')
+        .pipe(stylus())
         .pipe(gulp.dest('static/css/'));
 });
 
 var vendorCSS = [
     "bower_components/fontawesome/css/font-awesome.min.css",
-    "bower_components/bootswatch/flatly/bootstrap.min.css",
 ];
 
 var vendorScripts = [
     "bower_components/jquery/**/jquery.min.js",
-    "bower_components/bootstrap/**/**/bootstrap.min.js"
+    "bower_components/react/react-with-addons.min.js"
 ];
 
 gulp.task('concatCSS', function() {
@@ -38,7 +36,7 @@ gulp.task('develop', function() {
     process.env.NODE_ENV = 'dev';
     nodemon({
         script: 'server.js',
-        ext: 'hbs less js',
+        ext: 'jade less js',
         ignore: ['node_modules/', 'test/']
     })
         .on('change', ['styles'])

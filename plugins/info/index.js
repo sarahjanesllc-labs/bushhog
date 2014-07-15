@@ -5,7 +5,7 @@ var Blog = require('../../models/blog').Blog;
 exports.register = function(plugin, options, next) {
     plugin.views({
         engines: {
-            hbs: require('handlebars')
+            jade: require('jade')
         },
         path: path.resolve(__dirname, 'templates')
     });

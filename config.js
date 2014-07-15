@@ -9,7 +9,7 @@ exports.session = {
 exports.server = {
     views: {
         engines: {
-            hbs: require('handlebars')
+            jade: require('jade')
         },
         partialsPath: path.resolve(__dirname, 'views')
     }

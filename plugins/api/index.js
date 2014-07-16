@@ -1,15 +1,32 @@
 var Joi = require('joi');
 var path = require('path');
-var Produce = require('../../models/produce').Produce;
 var Blog = require('../../models/blog').Blog;
 var User = require('../../models/user').User;
 
-exports.register = function API (plugin, options, next) {
-    plugin.views({
-        engines: {
-            hbs: require('handlebars')
+exports.register = function API(plugin, options, next) {
+    /*
+     * user api
+     */
+    plugin.route({
+        method: 'POST',
+        path: '/api/user/create',
+        handler: function(request, reply) {
+            user = new User();
+            user.username = request.payload.username;
+            user.password = request.payload.password;
+
+            user.save(function(err) {
+                if (!err) {
+                    reply(user);
+                } else {
+                    reply(err);
+                }
+
+            });
         },
-        path: path.resolve(__dirname, 'templates')
+        config: {
+            auth: 'session'
+        }
     });
 
     plugin.route({

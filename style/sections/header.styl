@@ -1,70 +1,53 @@
 /*--------------------------------------------------------------------
 * HEADER
 --------------------------------------------------------------------*/
-
-header
-
-  background: url('/static/img/bg-cover-2.jpg') 0 0 no-repeat;
-  background-size: cover
-  height: 200px
-  p
-    margin: 0
-
-  nav
-    padding: 20px 0
-
-    ul
-      float: right
+nav
+  text-align: center
+  margin-top: 2rem
+  ul
+    display: inline
+  li
+    display: inline
+    margin-left: 1rem
 
 @media $mobile-devices
 
-  header
-    background: url('/static/img/bg-cover-2.jpg') 0 0 no-repeat;
-    background-size: cover
-    height: 55px
+  header.site-head
+      display: table
+      background: url('/static/img/black_lozenge_2x.png');
+      width: 100%
+      height: 100px
+      position: relative
+      text-align: center
+      .vertical
+        display: table-cell
+        vertical-align: middle
+      h2
+        color: $gray-lighter
+        font-size: $font-base
+      h4
+        font-size: $font-small
+  nav
+    font-size: $font-small
 
-    nav
-      ul, li
-        width: 100%
-
-      ul
-        margin-top: 120px
-        float: none
-
-      li
-        display: block
-        border-bottom: $ui-border
-
-      a
-        padding: 10px 20px
-
-        &.logo
-          height: 75px
-          width: 100px
-
-      .nav-toggle
-        float: right
-        margin-top: 40px
-        width: 30px
-        height: 40px
-        padding: 0
-        background: url('/public/img/icon-menu.svg') 0 0 no-repeat
-        background-size: contain
 
 @media $desktop
 
-  header
-      background: url('/static/img/bg-cover-2.jpg') 0 0 no-repeat;
-      background-size: cover
-      height: 100px
+  header.site-head
+      display: table
+      background: url('/static/img/black_lozenge_2x.png');
+      width: 100%
+      height: 400px
+      position: relative
+      text-align: center
+      .vertical
+        display: table-cell
+        vertical-align: middle
+      h2
+        color: $gray-lighter
+        font-size: 5rem
+        font-weight: $font-bold
 
-      nav.nav-collapse
-        ul
-          float: right
-          margin-top: 25px
-
-        li
-          display: inline
-
-        a
-          padding-right: 20px
+  nav
+    font-size: $font-large
+    font-weight: $font-bold

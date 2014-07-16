@@ -16,8 +16,6 @@
   "dependencies": {
     "react": "~0.10.0",
     "jquery": "~2.1.1",
-    "bootstrap": "~3.2.0",
-    "bootswatch": "~3.2.0+1",
     "fontawesome": "~4.1.0",
     "responsive-nav": "~1.0.32"
   }

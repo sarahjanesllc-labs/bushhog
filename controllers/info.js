@@ -1,33 +1,17 @@
 var Blog = require('../models/blog').Blog;
+var config = require('../config.js');
+
 module.exports = {};
 
+var items = {
+    config: config.meta
+};
+
 module.exports.index = function(req, reply) {
-    var items = {
-        title: 'Rolesville Farmers Market',
-        pageHeading: 'Welcome'
-    };
-
-    Blog.find({}, function(err, res) {
-        items.posts = res;
-        if (!err) {
-            reply.view('views/info/splashpage', items);
-        } else {
-            reply(err);
-        }
-    });
+    reply.view('views/info/splashpage', items);
 };
 
-module.exports.about = function(req, reply) {
-    var items = {
-        pageHeading: 'About'
-    };
-    reply.view('views/info/about', items);
-};
-
-
-module.exports.location = function(req, reply) {
-    var items = {
-        pageHeading: '<span class="glyphicon glyphicon-map-marker"></span> Location'
-    };
-    reply.view('views/info/location', items);
+module.exports.pricing = function(req, reply) {
+    items.pageHeading = 'Pricing';
+    reply.view('views/info/pricing', items);
 };

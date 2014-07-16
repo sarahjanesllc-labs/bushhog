@@ -6,19 +6,19 @@ var gulp = require('gulp'),
 
 gulp.task('styles', function() {
     gulp.src('style/**')
-        .pipe(stylus({compress: true}))
+        .pipe(stylus({
+            compress: true
+        }))
         .pipe(gulp.dest('static/css/'));
 });
 
 var vendorCSS = [
     "bower_components/fontawesome/css/font-awesome.min.css",
-    "bower_components/responsive-nav/responsive-nav.css"
 ];
 
 var vendorScripts = [
     "bower_components/jquery/**/jquery.min.js",
     "bower_components/react/react-with-addons.min.js",
-    "bower_components/responsive-nav/responsive-nav.min.js"
 ];
 
 gulp.task('concatCSS', function() {

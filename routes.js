@@ -4,14 +4,8 @@ module.exports = [{
     path: '/',
     method: 'GET',
     handler: info.index
-},
-{
-    path: '/about',
+}, {
+    path: '/pricing',
     method: 'GET',
-    handler: info.about
-},
-{
-    path: '/location',
-    method: 'GET',
-    handler: info.location
+    handler: info.pricing
 }];

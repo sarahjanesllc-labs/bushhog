@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+  form#login.form-inline(action='/auth/login', method='post', role='form')
+      label(for='username') Username
+        input#username.form-control(type='text', name='username')
+        label(for='password') Password
+        input#password.form-control(type='password', name='password')
+        input.btn.btn-primary(type='submit', value='Login')

@@ -13,9 +13,14 @@ html(lang='en')
 
   body
     block header
-      header
-        include nav
-        
+      header.site-head
+        div.vertical
+          h2 #{config.title}
+          if config.slogan
+            h4 #{config.slogan}
+
+      include nav
+
     div.content
 
 
@@ -23,7 +28,3 @@ html(lang='en')
       include footer
 
     script(src='/static/js/vendor.min.js')
-    script.
-        var nav = responsiveNav('.nav-collapse', {
-            label: "<h2><span class='fa fa-arrow-circle-down'> Menu</span></h2>"
-        });

@@ -6,9 +6,9 @@ var path = require('path');
 exports.register = function(plugin, options, next) {
     plugin.views({
         engines: {
-            hbs: require('handlebars')
+            jade: require('jade')
         },
-        path: path.resolve(__dirname, 'templates')
+        path: path.resolve(__dirname, '../../views')
     });
     plugin.dependency('hapi-auth-cookie');
     plugin.auth.strategy('session', 'cookie', {
@@ -53,12 +53,11 @@ exports.create = function(plugin) {
 
 exports.login = function(plugin) {
     var items = {
-        pageHeading: 'Login',
-        message: ''
+        config: config.meta
     };
     plugin.route({
         method: ['GET', 'POST'],
-        path: '/auth/login',
+        path: '/login',
         handler: function(request, reply) {
             if (request.auth.isAuthenticated) {
                 return reply.redirect('/admin');
@@ -84,7 +83,7 @@ exports.login = function(plugin) {
                 }
             }
             if (request.method === 'get' || items.message) {
-                return reply.view('login', items);
+                return reply.view('auth/login', items);
             }
         }
     });
@@ -93,7 +92,7 @@ exports.login = function(plugin) {
 exports.logout = function(plugin) {
     plugin.route({
         method: 'GET',
-        path: '/auth/logout',
+        path: '/logout',
         handler: function(request, reply) {
             request.auth.session.clear();
             return reply.redirect('/');

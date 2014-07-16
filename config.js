@@ -1,5 +1,10 @@
 var path = require('path');
 
+exports.meta = {
+    title: '2market2market',
+    slogan: 'Manage your Farmers\' Market.'
+};
+
 exports.session = {
     password: 'i should probably set this to something s3cure',
     cookie: 's',

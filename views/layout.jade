@@ -12,6 +12,18 @@ html(lang='en')
     link(rel='stylesheet', href='/static/css/main.css')
 
   body
+    block header
+      header
+        include nav
+        
+    div.content
 
-    block content
-    include footer
+
+      block content
+      include footer
+
+    script(src='/static/js/vendor.min.js')
+    script.
+        var nav = responsiveNav('.nav-collapse', {
+            label: "<h2><span class='fa fa-arrow-circle-down'> Menu</span></h2>"
+        });

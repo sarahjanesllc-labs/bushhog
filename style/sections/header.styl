@@ -1,0 +1,70 @@
+/*--------------------------------------------------------------------
+* HEADER
+--------------------------------------------------------------------*/
+
+header
+
+  background: url('/static/img/bg-cover-2.jpg') 0 0 no-repeat;
+  background-size: cover
+  height: 200px
+  p
+    margin: 0
+
+  nav
+    padding: 20px 0
+
+    ul
+      float: right
+
+@media $mobile-devices
+
+  header
+    background: url('/static/img/bg-cover-2.jpg') 0 0 no-repeat;
+    background-size: cover
+    height: 55px
+
+    nav
+      ul, li
+        width: 100%
+
+      ul
+        margin-top: 120px
+        float: none
+
+      li
+        display: block
+        border-bottom: $ui-border
+
+      a
+        padding: 10px 20px
+
+        &.logo
+          height: 75px
+          width: 100px
+
+      .nav-toggle
+        float: right
+        margin-top: 40px
+        width: 30px
+        height: 40px
+        padding: 0
+        background: url('/public/img/icon-menu.svg') 0 0 no-repeat
+        background-size: contain
+
+@media $desktop
+
+  header
+      background: url('/static/img/bg-cover-2.jpg') 0 0 no-repeat;
+      background-size: cover
+      height: 100px
+
+      nav.nav-collapse
+        ul
+          float: right
+          margin-top: 25px
+
+        li
+          display: inline
+
+        a
+          padding-right: 20px

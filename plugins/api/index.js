@@ -29,39 +29,40 @@ exports.register = function API(plugin, options, next) {
         }
     });
 
+    /*
+     * blog api
+     */
     plugin.route({
         method: 'GET',
-        path: '/api/product',
-        handler: require('./show-products')
-    });
-
-    plugin.route({
-        method: 'GET',
-        path: '/api/product/{id}',
-        handler: require('./show-product-detail')
+        path: '/api/blog/list',
+        handler: function(request, reply) {
+            Blog.find({}, function(err, res) {
+                if (!err) {
+                    reply(res);
+                } else {
+                    reply(err);
+                }
+            });
+        }
     });
 
     plugin.route({
         method: 'POST',
-        path: '/api/product/add',
+        path: '/api/blog/new',
         handler: function(request, reply) {
-            produce = new Produce();
-            produce.label = request.payload.label;
-            produce.price = request.payload.price;
-            produce.uom = request.payload.uom;
-            produce.category = request.payload.category;
+            entry = new Blog();
+            entry.author = request.payload.username;
+            entry.md = request.payload.body;
+            entry.title = request.payload.title;
 
-            produce.save(function(err) {
+            entry.save(function(err) {
                 if (!err) {
-                    reply(produce);
+                    reply(entry);
                 } else {
                     reply(err);
                 }
 
             });
-        },
-        config: {
-            auth: 'session'
         }
     });
 

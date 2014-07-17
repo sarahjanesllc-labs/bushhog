@@ -18,38 +18,11 @@ exports.register = function(plugin, options, next) {
         redirectTo: '/auth/login'
     });
 
-    // Expose register route if a user doesn't exist
-    User.findOne({}, function(err, user) {
-        if (!user) {
-            exports.create(plugin);
-        }
-    });
-
     exports.login(plugin);
     exports.logout(plugin);
     next();
 };
 
-exports.create = function(plugin) {
-    plugin.route({
-        method: 'POST',
-        path: '/auth/create',
-        handler: function(request, reply) {
-            user = new User();
-            user.username = request.payload.username;
-            user.password = request.payload.password;
-
-            user.save(function(err) {
-                if (!err) {
-                    reply(user);
-                } else {
-                    reply(err);
-                }
-
-            });
-        }
-    });
-};
 
 exports.login = function(plugin) {
     var items = {

@@ -11,6 +11,27 @@ var vendorSchema = new Mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    logoImage: {
+        type: String, trim: true
+    },
+    bio: {
+        type: String, trim: true
+    },
+    category: {
+        type: String, trim: true
+    },
+    facebookID: {
+        type: String, trim: true
+    },
+    twitterID: {
+        type: String, trim: true
+    },
+    pintrestID: {
+        type: String, trim: true
+    },
+    linkedinID: {
+        type: String, trim: true
     }
 });
 

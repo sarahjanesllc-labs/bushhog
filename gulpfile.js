@@ -17,8 +17,7 @@ var vendorCSS = [
 ];
 
 var vendorScripts = [
-    "bower_components/jquery/**/jquery.min.js",
-    "bower_components/react/react-with-addons.min.js",
+    "bower_components/yui3/build/yui/yui-min.js"
 ];
 
 gulp.task('concatCSS', function() {

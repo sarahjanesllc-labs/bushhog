@@ -14,9 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "react": "~0.10.0",
-    "jquery": "~2.1.1",
     "fontawesome": "~4.1.0",
-    "responsive-nav": "~1.0.32"
+    "yui3": "~3.17.2"
   }
 }

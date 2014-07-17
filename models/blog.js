@@ -13,7 +13,6 @@ var blogSchema = new Mongoose.Schema({
     },
     html: {
         type: String,
-        required: true,
     },
     author: {
         type: String,

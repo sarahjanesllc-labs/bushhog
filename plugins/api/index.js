@@ -63,6 +63,9 @@ exports.register = function API(plugin, options, next) {
                 }
 
             });
+        },
+        config: {
+            auth: 'session'
         }
     });
 

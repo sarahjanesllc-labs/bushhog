@@ -32,6 +32,12 @@ var vendorSchema = new Mongoose.Schema({
     },
     linkedinID: {
         type: String, trim: true
+    },
+    geolocation: {
+        type: String, trim: true
+    },
+    streetAddress: {
+        type: String, trim: true
     }
 });
 

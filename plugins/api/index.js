@@ -69,6 +69,50 @@ exports.register = function API(plugin, options, next) {
         }
     });
 
+    /*
+     * vendor api
+     */
+    plugin.route({
+        method: 'GET',
+        path: '/api/vendor/list',
+        handler: function(request, reply) {
+            Vendor.find({}, function(err, res) {
+                if (!err) {
+                    reply(res);
+                } else {
+                    reply(err);
+                }
+            });
+        }
+    });
+
+    plugin.route({
+        method: 'POST',
+        path: '/api/vendor/new',
+        handler: function(request, reply) {
+            entry = new Vendor();
+            entry.vendorname = request.payload.vendorname;
+            entry.bio = request.payload.bio;
+            entry.category = request.payload.category;
+            entry.facebookID = request.payload.facebookID;
+            entry.twitterID = request.payload.twitterID;
+            entry.pintrestID = request.payload.pintrestID;
+            entry.linkedinID = request.payload.linkedinID;
+
+            entry.save(function(err) {
+                if (!err) {
+                    reply(entry);
+                } else {
+                    reply(err);
+                }
+
+            });
+        },
+        config: {
+            auth: 'session'
+        }
+    });
+
     next();
 };
 
